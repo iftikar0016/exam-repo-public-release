@@ -35,7 +35,7 @@ export default function ({ user, weight }) {
       <p>Find the <strong>short commit hash</strong> for the commit with the message: <code>"${targetMessage}"</code>.</p>
       <pre class="overflow-auto" style="max-height: 200px; background: #f8f9fa; padding: 10px;">${logLines.join("\n")}</pre>
       <label>Commit Hash:</label>
-      <input type="text" name="${id}" placeholder="e.g. a1b2c3d" />
+      <input type="text" class="form-control" name="${id}" placeholder="e.g. a1b2c3d" />
     </div>
   `;
 
