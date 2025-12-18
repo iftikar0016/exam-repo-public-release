@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npm run build-code",
-    "build-code": "esbuild src/exam*.js src/q-*.js src/download.js --external:./exam-*.js --loader:.md=text --bundle --minify --format=esm --outdir=public/",
+    "build-code": "esbuild src/exam*.js src/download.js --external:./exam-*.js --loader:.md=text --bundle --minify --format=esm --outdir=public/",
     "dev": "npm run build && wrangler dev",
     "start": "npm run build && wrangler dev"
   },
