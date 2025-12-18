@@ -3,6 +3,7 @@ import seedrandom from "seedrandom";
 
 export default function ({ user, weight }) {
     const id = "q-git-hash";
+    const title = "Git Log Analysis";
     const rng = seedrandom(user.email + id);
 
     const messages = [
@@ -28,18 +29,21 @@ export default function ({ user, weight }) {
         return `* ${hash} ${msg}`;
     });
 
+    const question = html`
+    <div>
+      <h3>${title}</h3>
+      <p>Find the <strong>short commit hash</strong> for the commit with the message: <code>"${targetMessage}"</code>.</p>
+      <pre class="overflow-auto" style="max-height: 200px; background: #f8f9fa; padding: 10px;">${logLines.join("\n")}</pre>
+      <label>Commit Hash:</label>
+      <input type="text" name="answer" placeholder="e.g. a1b2c3d" />
+    </div>
+  `;
+
     return {
         id,
+        title,
         weight,
-        html: html`
-      <div>
-        <h3>Git Log Analysis</h3>
-        <p>Find the <strong>short commit hash</strong> for the commit with the message: <code>"${targetMessage}"</code>.</p>
-        <pre class="overflow-auto" style="max-height: 200px; background: #f8f9fa; padding: 10px;">${logLines.join("\n")}</pre>
-        <label>Commit Hash:</label>
-        <input type="text" name="answer" placeholder="e.g. a1b2c3d" />
-      </div>
-    `,
-        check: (answer) => answer.trim() === targetHash,
+        question,
+        answer: (answer) => answer.trim() === targetHash,
     };
 }
